@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="icon" href="" type="jpg" />
+    <link href="maincss.css" rel="stylesheet" />
+    <title>School CRM</title>
+  </head>
+  <body ng-app="list" ng-controller="mainController as main" ng-cloak>
+      <div id="container">
+         <header-component name="main.name"></header-component>
+         <div ui-view></div>
+      </div>
+    <script src="js/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/header.component.js"></script>
+    <script src="js/school.component.js"></script>
+    <script src="js/admins.component.js"></script>
+    <script src="js/config.js"></script>
+  </body>
+</html>
