@@ -1,0 +1,155 @@
+body{
+    margin: 0;
+    font-family: arial;
+    color: #333;
+}
+header{
+    background-color: #67BCDB;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 2rem;
+    box-shadow: 0 1px 3px 2px rgba(0,0,0,0.15);
+}
+
+header a{
+    text-decoration: none;
+    background-color: tomato;
+    padding: 0.5rem;
+    border-radius: 5px;
+    color: #fff;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.20);
+    margin-left: 0.5rem;
+}
+
+header nav, header #user_wrapper{
+    display: flex;
+    align-items: center;
+}
+
+header #logo{
+    display: flex;
+    align-items: center;    
+}
+
+header #logo img{
+    width: 80px;
+    width: 80px;
+    border: 1.5px solid #cfcece;
+    border-radius: 3px;
+}
+
+header #logo span{
+    width: 150px;
+    height: 1.5px;
+    background-color: #cfcece;
+    display: inline-block;
+}
+
+header #user_wrapper img{
+    width: 40px;
+    margin-left: 0.5rem;
+}
+
+header #user_wrapper #logout_button{
+    border: none;
+    background-color: tomato;
+    padding: 0.5rem;
+    border-radius: 5px;
+    color: #fff;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.20);
+    margin-left: 0.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#view{
+    animation: fadein 2s;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+h1, h3, p{
+    text-align: center;
+}
+
+h1{
+    width: 300px;
+    margin: auto;
+    margin-top: 2rem;
+    background-color: #67BCDB;
+    padding: 0.5rem;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.20);
+    color: #fff;
+}
+
+h3{
+    background-color: #fff;
+    padding: 0.3rem;
+    width: 70%;
+    border-radius: 8px;
+    margin: auto;
+}
+
+.content{
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem;
+}
+
+courses-component, students-component{
+    width: 15%;
+}
+
+admins-component{
+    width: 20%;
+}
+
+schoolview-component, adminsview-component{
+   width: 60%;
+}
+
+.view_content{
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.view_content img{
+    height: 100%;
+    margin: auto;
+    display: block;
+}
+
+.students_header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.students_header a{
+    text-decoration: none;
+    background-color: tomato;
+    padding: 0 0.5rem;
+    border-radius: 5px;
+    color: #fff;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.20);
+    margin-left: 0.5rem;
+    width: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+#courses, #students, #admins, .main_view{
+    height: 60vh;
+    background-color: #c6cc9a;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.20);
+    padding: 1rem;
+    box-sizing: border-box;
+}

@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="icon" href="http://www.coadesign.org/core/wp-content/uploads/2013/11/sof-logo.png" type="png" />
+    <link href="maincss.css" rel="stylesheet" />
+    <title>School CRM</title>
+  </head>
+  <body ng-app="list" ng-controller="mainController as main" ng-cloak>
+      <div id="container">
+         <header-component user="main.user"></header-component>
+         <div id="view" ui-view></div>
+      </div>
+    <script src="js/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/header/header.component.js"></script>
+    <script src="js/school/school.component.js"></script>
+    <script src="js/admins/administrators.component.js"></script>
+    <script src="js/courses/courses.component.js"></script>
+    <script src="js/students/students.component.js"></script>
+    <script src="js/admins/admins.component.js"></script>
+    <script src="js/school/school.view.component.js"></script>
+    <script src="js/admins/admins.view.component.js"></script>
+    <script src="js/config.js"></script>
+  </body>
+</html>

@@ -3,6 +3,7 @@ var jsonBody = require('body-parser').json();
 var async = require('async');
 var app = express();
 
+app.use(express.static('public'));
 var connect = require('./connectModule');
 
 connect().then(function (db) {
