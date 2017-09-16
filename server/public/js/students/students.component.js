@@ -5,7 +5,7 @@ app.component('studentsComponent', {
                                <a href="">+</a>
                            </div>
                            <ul>
-                               <li ng-repeat="student in students.students">{{student.name}}</li>
+                               <student-component students="students.students"></student-component>
                            </ul>
                        </div>`,
   bindings: {
