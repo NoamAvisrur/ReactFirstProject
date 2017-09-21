@@ -5,7 +5,7 @@ app.component('adminsComponent', {
                                <a href="">+</a>
                            </div>
                            <ul>
-                               <li ng-repeat="admin in admins.admins">{{admin.name}}</li>
+                               <admin-component admins="admins.admins"></admin-component>
                            </ul>
                        </div>`,
   bindings: {

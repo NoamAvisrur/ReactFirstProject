@@ -21,13 +21,31 @@ connect().then(function (db) {
                 .then(function (courses) {
                     callback(null, courses);
                 })
-            }           
+            },
+             function(callback) {
+                db.collection('admins').find().toArray()
+                .then(function (admins) {
+                    callback(null, admins);
+                })
+            }             
         ],
         function(err, results) {
 			res.set({'Content-Type': 'application/json'});
-			res.send(JSON.stringify(results))
+			res.send(JSON.stringify(results));
 	    })
     })
+    
+    app.get('/school/:id', function (req, res) {
+        var id = req.params.id;
+        console.log(id);
+        db.collection('students').find({_id: id}).toArray()
+        .then(function (results) {
+            console.log(results);
+            res.set({'Content-Type': 'application/json'});
+			res.send(JSON.stringify(results));
+        })
+    })
+    
 }).catch(function (err) {
 	throw new Error(err);
 });

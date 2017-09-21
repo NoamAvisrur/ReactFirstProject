@@ -22,7 +22,16 @@ app.service('DataService', function($http) {
 			return response.data;
 		});
     };
-
+    
+    this.getSpecificData = function(id){
+		return $http({
+			url: `http://localhost:3000/school/${id}`
+		})
+		.then(function (response) {
+			return response.data;
+		});
+    };
+    
 });
 
 

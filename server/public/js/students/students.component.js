@@ -2,7 +2,7 @@ app.component('studentsComponent', {
             template: `<div id="students">
                            <div class="students_header">
                                <h3>Students</h3>
-                               <a href="">+</a>
+                               <a ui-sref="school.students">+</a>
                            </div>
                            <ul>
                                <student-component students="students.students"></student-component>
