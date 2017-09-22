@@ -1,5 +1,5 @@
 app.component('studentComponent', {
-            template: `<a ng-href=/#!/school/{{student._id}} ng-repeat="student in student.students">
+            template: `<a ng-href=/#!/school/students/{{student._id}} ng-repeat="student in student.students">
                            <li>
                                <img class="student_img" ng-src={{student.img}} alt="students img"/>
                                <div>

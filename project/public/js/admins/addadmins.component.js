@@ -1,6 +1,6 @@
-app.component('addstudentComponent', {
-            template: `<div class="add_student_wrapper">
-                          <h2>add student</h2>
+app.component('addadminComponent', {
+            template: `<div class="add_admin_wrapper">
+                          <h2>add administrator</h2>
                           <form>
                               <label>
                                   <span>name</span>
@@ -18,9 +18,8 @@ app.component('addstudentComponent', {
                                   <span>image</span>
                                   <input type="file">
                               </label>                      
-                              <label ng-repeat="course in addstudent.data[1]">
-                                  <input type="checkbox" value={{course.name}}>
-                                  <span>{{course.name}}</span>
+                              <label ng-repeat="course in addstudent.data[0]">
+                                  <input type="checkbox" value={{course}}>
                               </label>
                           </form>
                        </div>`,
@@ -28,7 +27,9 @@ app.component('addstudentComponent', {
        data: "="
   },
   controller: function($element) {
-
+      
+      console.log(this);
+     
   },
-  controllerAs: 'addstudent'
+  controllerAs: 'addadmin'
 });

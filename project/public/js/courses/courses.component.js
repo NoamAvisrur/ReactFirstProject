@@ -2,7 +2,7 @@ app.component('coursesComponent', {
             template: `<div id="courses">
                            <div class="students_header">
                                <h3>Courses</h3>
-                               <a ui-sref="school.courses">+</a>
+                               <a ui-sref="school.addcourse">+</a>
                            </div>
                            <ul>
                                <course-component courses="courses.courses"></course-component>

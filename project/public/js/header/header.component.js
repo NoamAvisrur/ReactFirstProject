@@ -1,8 +1,8 @@
 app.component('headerComponent', {
   template: `<header>
                  <nav>
-                     <a ui-sref="school">school</a>
-                     <a ui-sref="admin">administrators</a>
+                     <a ui-sref="school.general">school</a>
+                     <a ui-sref="admin.general">administrators</a>
                  </nav>
                  <div id="logo">
                        <span></span>

@@ -32,19 +32,19 @@ connect().then(function (db) {
         function(err, results) {
 			res.set({'Content-Type': 'application/json'});
 			res.send(JSON.stringify(results));
-	    })
-    })
+	    });
+    });
     
     app.get('/school/:id', function (req, res) {
-        var id = req.params.id;
+        var id = require('mongodb').ObjectID(req.params.id);
         console.log(id);
-        db.collection('students').find({_id: id}).toArray()
+        db.collection('students').findOne({_id: id})
         .then(function (results) {
             console.log(results);
             res.set({'Content-Type': 'application/json'});
 			res.send(JSON.stringify(results));
-        })
-    })
+        });
+    });
     
 }).catch(function (err) {
 	throw new Error(err);

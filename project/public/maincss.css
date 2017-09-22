@@ -140,7 +140,8 @@ schoolview-component, adminsview-component{
 }
 
 .view_content img{
-    height: 100%;
+    //width: 100%;
+    height: 50vh;
     margin: auto;
     display: block;
 }
@@ -230,7 +231,7 @@ ul li:hover{
     margin-top: 3px;
 }
 
-.add_student_wrapper, .add_course_wrapper{
+.add_student_wrapper, .add_course_wrapper, .add_admin_wrapper{
     padding: 1rem;
     box-sizing: border-box;
 }
