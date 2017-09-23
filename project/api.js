@@ -35,10 +35,32 @@ connect().then(function (db) {
 	    });
     });
     
-    app.get('/school/:id', function (req, res) {
+    app.get('/school/students/:id', function (req, res) {
         var id = require('mongodb').ObjectID(req.params.id);
         console.log(id);
         db.collection('students').findOne({_id: id})
+        .then(function (results) {
+            console.log(results);
+            res.set({'Content-Type': 'application/json'});
+			res.send(JSON.stringify(results));
+        });
+    });
+    
+    app.get('/school/courses/:id', function (req, res) {
+        var id = require('mongodb').ObjectID(req.params.id);
+        console.log(id);
+        db.collection('courses').findOne({_id: id})
+        .then(function (results) {
+            console.log(results);
+            res.set({'Content-Type': 'application/json'});
+			res.send(JSON.stringify(results));
+        });
+    });
+    
+    app.get('/admin/:id', function (req, res) {
+        var id = require('mongodb').ObjectID(req.params.id);
+        console.log(id);
+        db.collection('admins').findOne({_id: id})
         .then(function (results) {
             console.log(results);
             res.set({'Content-Type': 'application/json'});

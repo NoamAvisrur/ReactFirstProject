@@ -23,9 +23,9 @@ app.service('DataService', function($http) {
 		});
     };
     
-    this.getSpecificData = function(id){
+    this.getSpecificData = function(id, type){
 		return $http({
-			url: `http://localhost:3000/school/${id}`
+			url: `http://localhost:3000/${type}/${id}`
 		})
 		.then(function (response) {
 			return response.data;

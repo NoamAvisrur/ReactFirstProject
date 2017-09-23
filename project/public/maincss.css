@@ -135,8 +135,6 @@ schoolview-component, adminsview-component{
 .view_content{
     width: 100%;
     height: 100%;
-    background-color: #fff;
-    border-radius: 5px;
 }
 
 .view_content img{
@@ -193,11 +191,23 @@ label span{
     display: block;
 }
 
-input{
+input, select{
     width: 30%;
     height: 25px;
     border-radius: 10px;
     border: 1px solid #c6cc9a;
+    box-sizing: border-box;
+}
+
+input[type=submit]{
+    background-color: tomato;
+    border-color: tomato;
+    color: #fff;
+}
+
+input[type=submit]:hover{
+    cursor: pointer;
+    color: #67BCDB; 
 }
 
 textarea{
@@ -234,6 +244,50 @@ ul li:hover{
 .add_student_wrapper, .add_course_wrapper, .add_admin_wrapper{
     padding: 1rem;
     box-sizing: border-box;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.show_student_wrapper, .show_course_wrapper, .show_admin_wrapper{
+    padding: 1rem;
+    box-sizing: border-box;   
+    text-align: center;
+    background-color: #fff;
+    border-radius: 5px;
+}
+.show_student_wrapper div, .show_course_wrapper div, .show_admin_wrapper div{
+    display: flex;
+}
+
+.show_student_wrapper div a, .show_course_wrapper div a, .show_admin_wrapper div a{
+    text-decoration: none;
+    background-color: tomato;
+    padding: 0 0.5rem;
+    border-radius: 5px;
+    color: #fff;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.20);
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.show_student_wrapper div a:hover, .show_course_wrapper div a:hover, .show_admin_wrapper div a:hover{
+    color: #67BCDB; 
+}
+
+.show_student_wrapper span, .show_admin_wrapper span{
+    display: block;
+    margin-top: 0.5rem;
+}
+.show_student_wrapper img, .show_course_wrapper img, .show_admin_wrapper img{
+    width: 170px;
+    height: auto;
+    margin: auto;
+    display: block;
+    margin-top: 1rem;
+    border-radius: 10px;
 }
 
 ::-webkit-scrollbar {

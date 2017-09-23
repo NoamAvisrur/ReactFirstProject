@@ -5,7 +5,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
     .state('school',{
         url: '/school',
-        //template: `<school-component data="main.data"></school-component>`
         component: 'schoolComponent',
         resolve: {
             data: function(DataService) {
@@ -19,7 +18,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
         })  
         .state('school.addstudent', {
             url: '/addstudent',
-            //template: `<addstudent-component data="school.data"></addstudent-component>`
             component: 'addstudentComponent',
             resolve: {
                 data: function(DataService) {
@@ -27,12 +25,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
                 }
             }
         })
-        .state('school.student',{
+        .state('school.showstudent',{
             url: '/students/:studentId',
             component: 'viewstudentComponent',
             resolve: {
                 data: function($stateParams, DataService) {
-                    return DataService.getSpecificData($stateParams.studentId)
+                    return DataService.getSpecificData($stateParams.studentId, 'school/students')
                     .then(function (data) {
 		                 return data;
                     })
@@ -41,13 +39,23 @@ app.config(function($stateProvider, $urlRouterProvider) {
         })
         .state('school.addcourse', {
             url: '/addcourse',
-            //template: `<addscourse-component></addscourse-component>`
             component: 'addscourseComponent'
         })
+        .state('school.showcourse',{
+            url: '/courses/:courseId',
+            component: 'viewcourseComponent',
+            resolve: {
+                data: function($stateParams, DataService) {
+                    return DataService.getSpecificData($stateParams.courseId, 'school/courses')
+                    .then(function (data) {
+		                 return data;
+                    })
+                }
+            }
+        })        
     
     .state('admin', {
         url: '/admin',
-        //template: `<administrators-component data="main.data"></administrators-component>`
         component: 'administratorsComponent',
         resolve: {
             data: function(DataService) {
@@ -61,16 +69,18 @@ app.config(function($stateProvider, $urlRouterProvider) {
         })  
         .state('admin.addadmin', {
             url: '/addadmin',
-            //template: `<addadmin-component></addadmin-component>`
             component: 'addadminComponent'
         })
+        .state('admin.showadmin',{
+            url: '/:adminId',
+            component: 'viewadminComponent',
+            resolve: {
+                data: function($stateParams, DataService) {
+                    return DataService.getSpecificData($stateParams.adminId, 'admin')
+                    .then(function (data) {
+		                 return data;
+                    })
+                }
+            }
+        })         
 });
-
-app.controller('studentView', function($stateParams, DataService){
-    
-     DataService.getSpecificData($stateParams.studentId)
-    .then(function (data) {
-		this.data = data;
-        console.log(data);
-	}.bind(this));
-})
