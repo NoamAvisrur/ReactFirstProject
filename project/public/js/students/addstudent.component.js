@@ -17,10 +17,11 @@ app.component('addstudentComponent', {
                               <label>
                                   <span>image</span>
                                   <input type="file">
-                              </label>                      
+                              </label>       
+                              <h2>Pick student's courses</h2>
                               <label ng-repeat="course in addstudent.data[1]">
-                                  <input type="checkbox" value={{course.name}}>
-                                  <span>{{course.name}}</span>
+                                  <input type="checkbox" value={{course.name}} ng-model="addstudent.courses[course.name]">
+                                  <span class="course_title">{{course.name}}</span>
                               </label>
                               <input type="submit">
                           </form>
@@ -32,8 +33,8 @@ app.component('addstudentComponent', {
       this.name = '';
       this.phone = '';
       this.email = '';
+      this.courses = [];
       
-      console.log(this);
       this.submit = function(){
           console.log('ok');
           console.log(this);

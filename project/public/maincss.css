@@ -199,6 +199,15 @@ input, select{
     box-sizing: border-box;
 }
 
+.course_title{
+    display: inline-block;    
+}
+
+input[type="checkbox"]{
+   width: auto;
+   height: auto;
+}
+
 input[type=submit]{
     background-color: tomato;
     border-color: tomato;

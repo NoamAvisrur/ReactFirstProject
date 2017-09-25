@@ -10,6 +10,10 @@ app.component('addscourseComponent', {
                                   <span>description</span>
                                   <textarea rows="4" name="description" ng-model="addcourse.description"></textarea>
                               </label>
+                              <label>
+                                  <span>course image:</span>
+                                  <input type="file" ng-model="addcourse.image">
+                              </label>                       
                               <input type="submit">
                           </form>
                        </div>`,
@@ -19,12 +23,12 @@ app.component('addscourseComponent', {
   controller: function($element) {
       this.title = '';
       this.description = '';
+      this.image = '';
 
       this.submit = function(){
-          console.log('ok');
           console.log(this);
-         this.name = '';
-         this.description = '';
+          this.name = '';
+          this.description = '';
       }   
   },
   controllerAs: 'addcourse'
