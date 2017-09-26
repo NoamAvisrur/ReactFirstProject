@@ -3,7 +3,7 @@ app.component('adminComponent', {
                             <li>
                                 <img class="admin_img" ng-src={{admin.img}} alt="course img"/>
                                 <div>
-                                    <span class="name">{{admin.name}}</span>
+                                    <span class="name">{{admin.name}}, {{admin.roles[0].role}}</span>
                                     <span class="phone">{{admin.phone}}</span>
                                     <span class="email">{{admin.email}}</span>
                                 </div>

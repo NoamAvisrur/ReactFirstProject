@@ -12,11 +12,33 @@ class Admin {
     }
     
     static getAll (db) {
-        return db.collection('admins').find().toArray()
+        return db.collection('admins').aggregate([
+            {
+              $lookup:
+                {
+                  from: "roles",
+                  localField: "role_id",
+                  foreignField: "_id",
+                  as: "roles"
+                }
+            }
+        ]).toArray()
     }
     
     static getOne (id, db){
-        return db.collection('admins').findOne({_id: id})
+        //return db.collection('admins').findOne({_id: id})
+        return db.collection('admins').aggregate([
+            {$match: {_id: id}},
+            {
+              $lookup:
+                {
+                  from: "roles",
+                  localField: "role_id",
+                  foreignField: "_id",
+                  as: "roles"
+                }
+            }
+        ]).toArray()
     }
 }
 

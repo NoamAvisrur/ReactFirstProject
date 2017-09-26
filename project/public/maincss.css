@@ -241,7 +241,6 @@ ul li{
 }
 ul li:hover{
     opacity: 1; 
-    cursor: pointer;
 }
 
 .name, .phone, .email{
@@ -297,6 +296,28 @@ ul li:hover{
     display: block;
     margin-top: 1rem;
     border-radius: 10px;
+}
+
+#students_courses{
+    margin-top: 1rem;
+    display: block;
+}
+
+#students_courses li{
+    width: 200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    background-color: #c6cc9a;
+    padding-right: 1rem;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+}
+
+#students_courses img{
+    margin: 0;
+    width: 50px;
+    height: auto;    
 }
 
 ::-webkit-scrollbar {

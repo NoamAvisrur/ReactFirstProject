@@ -28,7 +28,8 @@ app.service('DataService', function($http) {
 			url: `http://localhost:3000/${type}/${id}`
 		})
 		.then(function (response) {
-			return response.data;
+			console.log(response);
+            return response.data;
 		});
     };
     
