@@ -4,7 +4,7 @@ class Course {
     constructor (title, description, img ){
         this.title = validator.escape(title);
         this.desctiption = validator.escape(description);
-        this.img = img;
+        this.img = validator.escape(img);
     }
     
     static getAll (db) {
@@ -28,13 +28,12 @@ class Course {
     
     add(db){
         this.validate();
-        console.log(this.title);
+        console.log(this);
         //db.collection('courses').insert({
         //    name: this.name,
         //    description: this.photo,
         //    img: this.img
         //})
-        console.log(this);
 	}  
     
     // update(){
@@ -49,6 +48,7 @@ class Course {
     validate(){
         if (validator.isEmpty(this.title)) {throw new Error('course title can not be empty')};
         if (validator.isEmpty(this.desctiption)) {throw new Error('course description can not be empty')};
+        if (validator.isEmpty(this.img)) {throw new Error('course img can not be empty')};
     }
 }
 

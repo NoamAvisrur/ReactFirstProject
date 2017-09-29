@@ -15,9 +15,8 @@ function setStudentsRoutes(app, db){
     });
     
     app.post('/school/students',jsonBody, function(req, res){
-        console.log(req.body);
-		//var newCourse = new Course(req.body.title, req.body.description, req.body.img);
-		//newCourse.add(db);
+		var newStudent = new Student(req.body.name, req.body.phone, req.body.email, req.body.img, req.body.courses);
+		newStudent.add(db);
 		res.send(201);
     });    
 }

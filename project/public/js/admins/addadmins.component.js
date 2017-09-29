@@ -17,14 +17,14 @@ app.component('addadminComponent', {
                               <label>
                                   <span>role:</span>
                                   <select ng-model="addadmin.role" required>
-                                       <option value="ObjectId("59ca52d0eacd11bc2f1ea63e")">Owner</option>
-                                       <option value="ObjectId("59ca5316eacd11bc2f1ea63f")">Manager</option>
-                                       <option value="ObjectId("59ca531eeacd11bc2f1ea640")">Sales</option>
+                                       <option value="59ca52d0eacd11bc2f1ea63e">Owner</option>
+                                       <option value="59ca5316eacd11bc2f1ea63f">Manager</option>
+                                       <option value="59ca531eeacd11bc2f1ea640">Sales</option>
                                   </select>
                               </label>                       
                               <label>
                                   <span>password:</span>
-                                  <input type="password" name="password" maxlength="8" ng-model="addadmin.password" required>
+                                  <input type="password" name="password" maxlength="8" ng-model="addadmin.password" pattern="^[a-zA-Z0-9]+$" title="please use english letters and digits only" required>
                               </label>                      
                               <label>
                                   <span>presonal image:</span>
@@ -36,7 +36,7 @@ app.component('addadminComponent', {
   bindings: {
        data: "="
   },
-  controller: function($element) {
+  controller: function($element, DataService) {
       
       this.name = '';
       this.phone = '';
@@ -45,9 +45,24 @@ app.component('addadminComponent', {
       this.role = '';
       this.password = '';
       
-      console.log(this);
       this.submit = function(){
-          console.log(this);
+            this.img = document.querySelector('input[type=file]').files[0].name;
+            var data = {
+                name: this.name,
+                phone: this.phone,
+                email: this.email,
+                img: this.img,
+                role: this.role,
+                password: this.password
+            }    
+            DataService.addNewData('admins', JSON.stringify(data))
+            .then(function(status){
+                if(status == 201){
+                    console.log(status);
+                    this.clean();
+                    window.location.href = 'http://localhost:3000/#!/admin/general';
+                }
+            }.bind(this))          
       }
       
       this.clean = function(){  

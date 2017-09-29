@@ -1,4 +1,5 @@
 var Admin = require('./Admin');
+var jsonBody = require('body-parser').json();
 
 function setAdminsRoutes(app, db){
     
@@ -10,6 +11,13 @@ function setAdminsRoutes(app, db){
 			res.send(JSON.stringify(results));
         });
     });
+
+    app.post('/admins',jsonBody, function(req, res){
+		var newAdmin = new Admin(req.body.name, req.body.phone, req.body.email, req.body.img, req.body.role, req.body.password);
+		newAdmin.add(db);
+		res.send(201);
+    });  
+
 }
 
 module.exports = setAdminsRoutes;
