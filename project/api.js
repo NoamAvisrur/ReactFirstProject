@@ -1,9 +1,13 @@
 var express = require('express');
-var jsonBody = require('body-parser').json();
 var app = express();
 
 app.use(express.static('public'));
 var connect = require('./connectModule');
+
+app.get('/', function (req, res){
+    console.log('good');
+    res.sendFile('login.html');
+});
 
 var setSchoolRoutes = require('./server/school/SchoolRoutes.js');
 var setCoursesRoutes = require('./server/courses/CourseRoutes.js');

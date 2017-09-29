@@ -28,8 +28,16 @@ app.service('DataService', function($http) {
 			url: `http://localhost:3000/${type}/${id}`
 		})
 		.then(function (response) {
-			console.log(response);
             return response.data;
+		});
+    };
+    
+    this.addNewData = function(type, data){
+		return $http.post(`http://localhost:3000/${type}`, data 
+        )
+		.then(function (response) {
+            console.log(response);
+            return response.status;
 		});
     };
     

@@ -1,4 +1,5 @@
 var Student = require('./Student');
+var jsonBody = require('body-parser').json();
 
 function setStudentsRoutes(app, db){
     
@@ -12,6 +13,13 @@ function setStudentsRoutes(app, db){
 			res.send(JSON.stringify(results));
         });
     });
+    
+    app.post('/school/students',jsonBody, function(req, res){
+        console.log(req.body);
+		//var newCourse = new Course(req.body.title, req.body.description, req.body.img);
+		//newCourse.add(db);
+		res.send(201);
+    });    
 }
 
 module.exports = setStudentsRoutes;

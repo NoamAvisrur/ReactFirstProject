@@ -1,4 +1,5 @@
 var Course = require('./Course');
+var jsonBody = require('body-parser').json();
 
 function setCoursesRoutes(app, db){
     
@@ -11,6 +12,13 @@ function setCoursesRoutes(app, db){
             res.set({'Content-Type': 'application/json'});
 			res.send(JSON.stringify(results));
         });
+    });
+ 
+    app.post('/school/courses',jsonBody, function(req, res){
+        console.log(req.body.description);
+		var newCourse = new Course(req.body.title, req.body.description, req.body.img);
+		newCourse.add(db);
+		res.send(201);
     });
 }
 

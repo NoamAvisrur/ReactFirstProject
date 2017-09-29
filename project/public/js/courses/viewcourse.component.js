@@ -1,13 +1,22 @@
 app.component('viewcourseComponent', {
             template: `<div class="show_course_wrapper">
-                          <div>
-                              <a href="">Edit</a>
-                              <h2>{{viewcourse.data.name}}</h2>
-                              <a href="">Delete</a>
-                          </div>
-                          <img ng-src={{viewcourse.data.img}} alt="student ing">
-                          <p>{{viewcourse.data.description}}</p>
-                          <p>there are _ students taking this course</p>
+                            <div>
+                                <a href="">Edit</a>
+                                <h2>{{viewcourse.data[0].name}}</h2>
+                                <a href="">Delete</a>
+                            </div>
+                            <img ng-src={{viewcourse.data[0].img}} alt="student ing">
+                            <p>{{viewcourse.data[0].description}}</p>
+                            <div id="students_courses">
+                                <h2>Students in Course</h2>
+                                   <ul>
+                                       <p>there are {{viewcourse.data[0].courses.length}} students taking this course</p>
+                                       <li ng-repeat="student in viewcourse.data[0].courses">
+                                           <img ng-src={{student.img}} alt="student course"> 
+                                           <span>{{student.name}}</span>
+                                       </li>
+                                   </ul>
+                            </div>                            
                        </div>`,
   bindings: {
        data: "="

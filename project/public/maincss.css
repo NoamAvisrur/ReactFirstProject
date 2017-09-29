@@ -224,6 +224,7 @@ textarea{
     resize: none;
     border-radius: 10px;
     border: 1px solid #c6cc9a;
+    font-family: arial;
 }
 
 ul{

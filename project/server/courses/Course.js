@@ -1,13 +1,10 @@
+var validator = require('validator');
+
 class Course {
-    constructor (name, description, image, db){
-        this.name = name;
-        this.desctiption = description;
-        this.image = image;
-        this.setDB(db);
-    }
-    
-    set(db){
-        this.db = db;
+    constructor (title, description, img ){
+        this.title = validator.escape(title);
+        this.desctiption = validator.escape(description);
+        this.img = img;
     }
     
     static getAll (db) {
@@ -15,7 +12,43 @@ class Course {
     }
     
     static getOne (id, db){
-        return db.collection('courses').findOne({_id: id})
+        return db.collection('courses').aggregate([
+            {$match: {_id: id}},
+            {
+              $lookup:
+                {
+                  from: "students",
+                  localField: "_id",
+                  foreignField: "courses",
+                  as: "courses"
+                }
+            }
+        ]).toArray()
+    }
+    
+    add(db){
+        this.validate();
+        console.log(this.title);
+        //db.collection('courses').insert({
+        //    name: this.name,
+        //    description: this.photo,
+        //    img: this.img
+        //})
+        console.log(this);
+	}  
+    
+    // update(){
+        //this.validate();
+        
+    //}
+    
+    // static delete(){
+        
+    //}
+    
+    validate(){
+        if (validator.isEmpty(this.title)) {throw new Error('course title can not be empty')};
+        if (validator.isEmpty(this.desctiption)) {throw new Error('course description can not be empty')};
     }
 }
 
