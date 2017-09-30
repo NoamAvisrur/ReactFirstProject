@@ -41,7 +41,7 @@ template: `<div class="add_course_wrapper">
                   if(status == 201){
                       console.log(status);
                       this.clean();
-                      window.location.href = 'http://localhost:3000/#!/school/general';
+                      $state.go("school.general",{},{reload: "school"});
                   }
               }.bind(this))
           }

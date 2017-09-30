@@ -32,7 +32,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
                 data: function($stateParams, DataService) {
                     return DataService.getSpecificData($stateParams.studentId, 'school/students')
                     .then(function (data) {
-		                 return data;
+		                 return data.reverse();
                     })
                 }
             }

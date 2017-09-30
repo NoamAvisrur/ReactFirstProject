@@ -8,7 +8,7 @@ app.component('addadminComponent', {
                               </label>
                               <label>
                                   <span>phone:</span>
-                                  <input type="text" name="phone" ng-model="addadmin.phone" maxlength="10" pattern="^[0-9]+$" title="please use digits only" required>
+                                  <input type="text" name="phone" ng-model="addadmin.phone" maxlength="10" pattern="^[0-9]{7,10}$" title="please insert 7 - 10 digits only" required>
                               </label>
                               <label>
                                   <span>email:</span>
@@ -36,7 +36,7 @@ app.component('addadminComponent', {
   bindings: {
        data: "="
   },
-  controller: function($element, DataService) {
+  controller: function($element, DataService, $state) {
       
       this.name = '';
       this.phone = '';
@@ -60,7 +60,7 @@ app.component('addadminComponent', {
                 if(status == 201){
                     console.log(status);
                     this.clean();
-                    window.location.href = 'http://localhost:3000/#!/admin/general';
+                    $state.go("admin.general",{},{reload: "admin"})
                 }
             }.bind(this))          
       }

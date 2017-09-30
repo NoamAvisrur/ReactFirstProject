@@ -8,7 +8,7 @@ app.component('addstudentComponent', {
                               </label>
                               <label>
                                   <span>phone:</span>
-                                  <input type="text" name="phone" ng-model="addstudent.phone" maxlength="10" pattern="^[0-9]+$" title="please use digits only" required>
+                                  <input type="text" name="phone" ng-model="addstudent.phone" maxlength="10" pattern="^[0-9]{7,10}$" title="please insert 7 - 10 digits only" required>
                               </label>
                               <label>
                                   <span>email:</span>
@@ -29,54 +29,46 @@ app.component('addstudentComponent', {
   bindings: {
        data: "="
   },
-  controller: function($element, DataService) {
+  controller: function($element, DataService, $state) {
       this.name = '';
       this.phone = '';
       this.email = '';
       this.img = '';
       this.courses = {};
-      this.finalCourses = [];
+      this.pickedCourses = [];
       
       this.submit = function(){
           var keys = Object.keys(this.courses);
-          var pickedCourses = keys.filter(function(key) {
+          this.pickedCourses = keys.filter(function(key) {
               return this.courses[key];
           }.bind(this));
-          if(pickedCourses.length === 0){
+          if(this.pickedCourses.length === 0){
               alert("please pickup courses for new student");
           }else{ 
               this.img = document.querySelector('input[type=file]').files[0].name;
-              this.prepateCourses(pickedCourses);
               var data = {
                   name: this.name,
                   phone: this.phone,
                   email: this.email,
                   img: this.img,
-                  courses: this.finalCourses
-              }    
+                  courses: this.pickedCourses
+              } 
               DataService.addNewData('school/students', JSON.stringify(data))
               .then(function(status){
                   if(status == 201){
-                      console.log(status);
                       this.clean();
-                      window.location.href = 'http://localhost:3000/#!/school/general';
+                      $state.go("school.general",{},{reload: "school"})
                   }
               }.bind(this))
           }
-      }
-      
-      this.prepateCourses = function(courses){
-          courses.forEach(function(id) {
-              this.finalCourses.push(`ObjectId(${id})`);
-          }.bind(this));
       }
       
       this.clean = function(){    
           this.name = '';
           this.phone = '';
           this.email = '';
-          this.courses = [];
-          this.finalCourses = [];
+          this.courses = {};
+          this.pickedCourses = [];
       }
   },
   controllerAs: 'addstudent'

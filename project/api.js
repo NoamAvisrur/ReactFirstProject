@@ -4,10 +4,16 @@ var app = express();
 app.use(express.static('public'));
 var connect = require('./connectModule');
 
-app.get('/', function (req, res){
-    console.log('good');
-    res.sendFile('login.html');
-});
+//var testloggedin = function(req, res, next){
+     //console.log(req.cookies);
+     //if(req.cookies.name === 'xxx'){
+     //    return next();
+     //}
+     //return res.status(401).send('err');
+    // res.redirect('/#!/login');
+//}
+
+//app.all('/*', testloggedin);
 
 var setSchoolRoutes = require('./server/school/SchoolRoutes.js');
 var setCoursesRoutes = require('./server/courses/CourseRoutes.js');

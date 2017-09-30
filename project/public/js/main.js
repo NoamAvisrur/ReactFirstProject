@@ -41,6 +41,15 @@ app.service('DataService', function($http) {
 		});
     };
     
+    this.deleteData = function(id, type){
+		return $http.delete(`http://localhost:3000/${type}/${id}` 
+        )
+		.then(function (response) {
+            console.log(response);
+            return response.status;
+		});
+    };
+    
 });
 
 

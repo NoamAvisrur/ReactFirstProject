@@ -1,11 +1,13 @@
 var validator = require('validator');
+var bcrypt = require('bcrypt');
+var mongoose = require('mongoose');
 
 class Admin {
     constructor (name, phone, email, img, role, password){
         this.name = validator.escape(name);
         this.phone = validator.escape(phone);
         this.email = validator.escape(email);
-        this.img = validator.escape(img);
+        this.img = `img/admins/${validator.escape(img)}`;
         this.role = validator.escape(role);
         this.password = validator.escape(password);
     }
@@ -41,12 +43,17 @@ class Admin {
     
     add(db){
         this.validate();
+        this.cryptPassword();
         console.log(this);
-        //db.collection('courses').insert({
-        //    name: this.name,
-        //    description: this.photo,
-        //    img: this.img
-        //})
+        db.collection('admins').insert({
+            name: this.name,
+            phone: this.phone,
+            email: this.email,
+            img: this.img,
+            role_id: mongoose.Types.ObjectId(this.role),
+            password: this.password
+        })
+        return 201;  
 	}      
     
     validate(){
@@ -56,7 +63,13 @@ class Admin {
         if (validator.isEmpty(this.img)) {throw new Error('admins img can not be empty')};  
         if (validator.isEmpty(this.role)) {throw new Error('admins role can not be empty')};
         if (validator.isEmpty(this.password)) {throw new Error('admins password can not be empty')};        
-    }    
+    }
+    
+    cryptPassword(){
+        bcrypt.hash(this.password, 10, function(err, hash) {
+            this.password = hash;
+        }.bind(this));
+    }
 }
 
 module.exports = Admin;

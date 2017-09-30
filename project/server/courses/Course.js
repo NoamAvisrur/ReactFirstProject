@@ -1,10 +1,11 @@
 var validator = require('validator');
+var mongoose = require('mongoose');
 
 class Course {
     constructor (title, description, img ){
         this.title = validator.escape(title);
         this.desctiption = validator.escape(description);
-        this.img = validator.escape(img);
+        this.img = `img/courses/${validator.escape(img)}`;
     }
     
     static getAll (db) {
@@ -28,12 +29,13 @@ class Course {
     
     add(db){
         this.validate();
-        console.log(this);
-        //db.collection('courses').insert({
-        //    name: this.name,
-        //    description: this.photo,
-        //    img: this.img
-        //})
+        db.collection('courses').insert({
+            name: this.title,
+            description: this.desctiption,
+            img: this.img
+            }
+        )
+        return 201;
 	}  
     
     // update(){
@@ -41,9 +43,12 @@ class Course {
         
     //}
     
-    // static delete(){
-        
-    //}
+    static deleteOne(id, db){
+        db.collection('courses').remove({
+            "_id": mongoose.Types.ObjectId(id)
+        });
+        return 204;
+    }
     
     validate(){
         if (validator.isEmpty(this.title)) {throw new Error('course title can not be empty')};

@@ -3,7 +3,7 @@ app.component('viewstudentComponent', {
                           <div>
                               <a href="">Edit</a>                          
                               <h2>{{viewstudent.data[0].name}}</h2>
-                              <a href="">Delete</a>
+                              <button ng-click="viewstudent.deleteStudent(viewstudent.data[0]._id)">Delete</button>
                           </div>
                           <img ng-src={{viewstudent.data[0].img}} alt="student img">
                           <span>tel: {{viewstudent.data[0].phone}}</span>
@@ -21,8 +21,19 @@ app.component('viewstudentComponent', {
   bindings: {
        data: "="
   },
-  controller: function($element) {
-    
+  controller: function($element, DataService, $state) {
+      
+      this.deleteStudent = function(id){
+          var confirmDelete = confirm("are you sure you want to delete?");
+          if(confirmDelete){
+              DataService.deleteData(id,'school/students')
+              .then(function(status){
+                  if(status == 204){
+                      $state.go("school.general",{},{reload: "school"});
+                  }
+              }.bind(this))
+          }              
+      }
   },
   controllerAs: 'viewstudent'
 });
