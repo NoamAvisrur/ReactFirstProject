@@ -1,9 +1,9 @@
 app.component('viewstudentComponent', {
             template: `<div class="show_student_wrapper">
                           <div>
-                              <a href="">Edit</a>                          
+                              <a ng-href=/#!/school/editstudent/{{viewstudent.data[0]._id}}>Edit</a>                         
                               <h2>{{viewstudent.data[0].name}}</h2>
-                              <button ng-click="viewstudent.deleteStudent(viewstudent.data[0]._id)">Delete</button>
+                              <button class="delete" ng-click="viewstudent.deleteStudent(viewstudent.data[0]._id)">Delete</button>
                           </div>
                           <img ng-src={{viewstudent.data[0].img}} alt="student img">
                           <span>tel: {{viewstudent.data[0].phone}}</span>

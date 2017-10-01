@@ -54,7 +54,14 @@ class Admin {
             password: this.password
         })
         return 201;  
-	}      
+	}
+    
+    static deleteOne(id, db){
+        db.collection('admins').remove({
+            "_id": mongoose.Types.ObjectId(id)
+        });
+        return 204;
+    }    
     
     validate(){
         if (validator.isEmpty(this.name)) {throw new Error('admins name can not be empty')};

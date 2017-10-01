@@ -37,9 +37,21 @@ app.config(function($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+        .state('school.editstudent',{
+            url: '/editstudent/:courseId',
+            component: 'editstudentComponent',
+            resolve: {
+                data: function($stateParams, DataService) {
+                    return DataService.getSpecificData($stateParams.courseId, 'school/student')
+                    .then(function (data) { 
+                        return data;
+                    })
+                }
+            }
+        })         
         .state('school.addcourse', {
             url: '/addcourse',
-            component: 'addscourseComponent'
+            component: 'addcourseComponent'
         })
         .state('school.showcourse',{
             url: '/courses/:courseId',
@@ -49,6 +61,18 @@ app.config(function($stateProvider, $urlRouterProvider) {
                     return DataService.getSpecificData($stateParams.courseId, 'school/courses')
                     .then(function (data) {
 		                 return data;
+                    })
+                }
+            }
+        })
+        .state('school.editcourse',{
+            url: '/editcourse/:courseId',
+            component: 'editcourseComponent',
+            resolve: {
+                data: function($stateParams, DataService) {
+                    return DataService.getSpecificData($stateParams.courseId, 'school/courses')
+                    .then(function (data) { 
+                        return data;
                     })
                 }
             }
@@ -76,7 +100,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
             component: 'viewadminComponent',
             resolve: {
                 data: function($stateParams, DataService) {
-                    return DataService.getSpecificData($stateParams.adminId, 'admin')
+                    return DataService.getSpecificData($stateParams.adminId, 'admins')
                     .then(function (data) {
 		                 return data;
                     })

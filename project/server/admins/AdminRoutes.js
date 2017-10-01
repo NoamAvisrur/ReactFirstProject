@@ -3,7 +3,7 @@ var jsonBody = require('body-parser').json();
 
 function setAdminsRoutes(app, db){
     
-    app.get('/admin/:id', function (req, res) {
+    app.get('/admins/:id', function (req, res) {
         var id = require('mongodb').ObjectID(req.params.id);
         Admin.getOne(id, db)
         .then(function (results) {
@@ -16,7 +16,13 @@ function setAdminsRoutes(app, db){
 		var newAdmin = new Admin(req.body.name, req.body.phone, req.body.email, req.body.img, req.body.role, req.body.password);
 		var status = newAdmin.add(db);
 		res.send(status);
-    });  
+    }); 
+    
+    app.delete('/admins/:id', function (req, res) {
+        var id = require('mongodb').ObjectID(req.params.id);
+        var status = Admin.deleteOne(id, db);
+        res.send(status);
+    });      
 
 }
 

@@ -62,7 +62,7 @@ header #user_wrapper #logout_button{
     cursor: pointer;
 }
 
-header #user_wrapper #logout_button:hover, header a:hover, .students_header a:hover {
+header #user_wrapper #logout_button:hover, header a:hover, .students_header a:hover, .delete:hover {
     color: #67BCDB;
 }
 
@@ -149,7 +149,7 @@ schoolview-component, adminsview-component{
     justify-content: space-between;
 }
 
-.students_header a{
+.students_header a, .delete{
     text-decoration: none;
     background-color: tomato;
     padding: 0 0.5rem;
@@ -162,6 +162,12 @@ schoolview-component, adminsview-component{
     align-items: center;
     justify-content: center;
     font-size: 1.5rem;
+}
+
+.delete{
+    width: 80px;
+    border: none;
+    cursor: pointer;
 }
 
 #courses, #students, #admins, .main_view{

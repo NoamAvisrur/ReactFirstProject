@@ -1,4 +1,4 @@
-app.component('addscourseComponent', {
+app.component('addcourseComponent', {
 template: `<div class="add_course_wrapper">
               <h2>Add new course</h2>
               <form ng-submit="addcourse.submit()">

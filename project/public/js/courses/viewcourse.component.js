@@ -1,9 +1,9 @@
 app.component('viewcourseComponent', {
             template: `<div class="show_course_wrapper">
                             <div>
-                                <a href="">Edit</a>
+                                <a ng-href=/#!/school/editcourse/{{viewcourse.data[0]._id}}>Edit</a>
                                 <h2>{{viewcourse.data[0].name}}</h2>
-                                <button ng-click="viewcourse.deleteCourse(viewcourse.data[0]._id)">Delete</button>
+                                <button class="delete" ng-click="viewcourse.deleteCourse(viewcourse.data[0]._id)">Delete</button>
                             </div>
                             <img ng-src={{viewcourse.data[0].img}} alt="student ing">
                             <p>{{viewcourse.data[0].description}}</p>
@@ -22,6 +22,7 @@ app.component('viewcourseComponent', {
        data: "="
   },
   controller: function($element, DataService, $state) {
+      
       this.deleteCourse = function(id){
           var confirmDelete = confirm("are you sure you want to delete?");
           if(confirmDelete){
