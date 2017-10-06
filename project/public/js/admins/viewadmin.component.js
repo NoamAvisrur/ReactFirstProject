@@ -1,7 +1,7 @@
 app.component('viewadminComponent', {
             template: `<div class="show_admin_wrapper">
                           <div>
-                              <a ui-sref="school.editcourse">Edit</a>                     
+                              <a ng-href=/#!/admin/editadmin/{{viewadmin.data[0]._id}}>Edit</a>                   
                               <h2>{{viewadmin.data[0].name}}, {{viewadmin.data[0].roles[0].role}}</h2>
                               <button class="delete" ng-click="viewadmin.deleteAdmin(viewadmin.data[0]._id)">Delete</button>
                           </div>

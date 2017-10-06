@@ -16,7 +16,7 @@ app.component('addstudentComponent', {
                               </label>
                               <label>
                                   <span>image</span>
-                                  <input type="file">
+                                  <input type="file" accept="image/*" required>
                               </label>       
                               <h2>Pick student's courses</h2>
                               <label ng-repeat="course in addstudent.data[1]">

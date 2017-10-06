@@ -42,9 +42,13 @@ app.config(function($stateProvider, $urlRouterProvider) {
             component: 'editstudentComponent',
             resolve: {
                 data: function($stateParams, DataService) {
-                    return DataService.getSpecificData($stateParams.courseId, 'school/student')
-                    .then(function (data) { 
-                        return data;
+                    return DataService.getSpecificData($stateParams.courseId, 'school/students')
+                    .then(function (student) { 
+                        return DataService.getServerData()
+                        .then(function(courses){
+                            var data = [student,courses[1]]
+                            return data;    
+                        })
                     })
                 }
             }
@@ -103,6 +107,18 @@ app.config(function($stateProvider, $urlRouterProvider) {
                     return DataService.getSpecificData($stateParams.adminId, 'admins')
                     .then(function (data) {
 		                 return data;
+                    })
+                }
+            }
+        })  
+        .state('admin.editcourse',{
+            url: '/editadmin/:courseId',
+            component: 'editadminComponent',
+            resolve: {
+                data: function($stateParams, DataService) {
+                    return DataService.getSpecificData($stateParams.courseId, 'admins')
+                    .then(function (data) { 
+                        return data;
                     })
                 }
             }

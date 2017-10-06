@@ -3,7 +3,7 @@ var jsonBody = require('body-parser').json();
 
 function setCoursesRoutes(app, db){
     
-    app.get('/school/courses/:id', function (req, res) {
+    app.get('/api/school/courses/:id', function (req, res) {
         var id = require('mongodb').ObjectID(req.params.id);
         Course.getOne(id, db)
         .then(function (results) {

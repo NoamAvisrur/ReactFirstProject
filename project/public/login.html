@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+    <link rel="icon" href="http://www.coadesign.org/core/wp-content/uploads/2013/11/sof-logo.png" type="png" />
+    <link href="maincss.css" rel="stylesheet" />
+    <style>
+        body{background-color: #67BCDB}
+    </style>    
+    <title>School CRM</title>
+</head>
+<body ng-app="login" ng-controller="loginController as login" ng-cloak>
+    <div id="login_container">
+        <img src="http://www.coadesign.org/core/wp-content/uploads/2013/11/sof-logo.png" alt="logo"/>
+        <form ng-submit="login.submit()">
+            <label>
+                <input type="text" name="name" ng-model="login.name" placeholder="name" required>
+           </label>
+            <label>
+                <input type="password" name="password" ng-model="login.password" placeholder="password" required>
+           </label>
+            <input type="submit">
+            <span id='alert'>{{login.alertName}}</span>
+            <span id='alert'>{{login.alertPassword}}</span>
+        </form>    
+    </div> 
+<script src="js/angular.min.js"></script>
+<script>
+    var app = angular.module('login', []);
+
+    app.controller('loginController', function(LoginService){
+
+        this.name = '';
+        this.password = '';
+        this.alertName = '';
+        this.alertPassword = '';
+         
+        this.submit = function(){
+            this.alertName = '';
+            this.alertPassword = '';
+            var data = {
+                name: this.name,
+                password: this.password,
+            } 
+            LoginService.postData(data)
+            .then(function(res){
+                 if(res.status == 202){
+                     window.location = "http://localhost:3000";
+                 }else{
+                     if(res.data == 'wrong name'){ 
+                       this.alertName = 'wrong name, please try again';
+                     }else{
+                         if(res.data == 'wrong password'){
+                             this.alertPassword = 'wrong password, please try again'
+                         }
+                     }
+                 }
+            }.bind(this))
+        } 
+    });
+
+    app.service('LoginService', function($http) {
+  
+        this.postData = function(data){
+            return $http.post('http://localhost:3000/login', data)
+            .then(function (response) {
+                return response;
+            });
+        };
+   });   
+      </script>
+  </body>
+</html>

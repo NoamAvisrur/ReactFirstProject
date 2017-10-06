@@ -10,15 +10,25 @@ app.component('headerComponent', {
                        <span></span>
                  </div>
                  <div id="user_wrapper">
-                     <span>Hello, {{header.user.name}}</span>
-                     <img src="{{header.user.img}}" alt="user img">
+                     <span>Hello {{header.userName}},</span>
+                     <span class="user_role">{{ header.userRole}}</span>
+                     <img class="user_img" ng-src="{{header.userImg}}" alt="user img">
                      <button id="logout_button">Log-Out</button>
                  </div>
             </header>`,
-  bindings: {
-       user: "="
-  },
-  controller: function($element) {
+  controller: function($element, DataService) {
+      
+    this.userName = '';
+    this.userRole = '';
+    this.userImg = '';
+    
+    
+    DataService.getServerData()
+    .then(function(res){
+        this.userName = res[3][0].name;
+        this.userImg = res[3][0].img;
+        this.userRole = res[3][0].roles[0].role;
+    }.bind(this))
      
   },
   controllerAs: 'header'

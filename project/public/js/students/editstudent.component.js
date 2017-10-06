@@ -19,8 +19,8 @@ app.component('editstudentComponent', {
                                   <input type="file">
                               </label>       
                               <h2>Pick student's courses</h2>
-                              <label ng-repeat="course in addstudent.data[1]">
-                                  <input type="checkbox" value={{course._id}} ng-model="addstudent.courses[course._id]">
+                              <label ng-repeat="course in editstudent.data[1] track by $index">
+                                  <input type="checkbox" value={{course._id}} ng-checked="editstudent.checked{{$index}}" ng-model="editstudent.courses[course._id]">
                                   <span class="course_title">{{course.name}}</span>
                               </label>
                               <input type="submit">
@@ -32,12 +32,22 @@ app.component('editstudentComponent', {
   controller: function($element, DataService, $state) {
     
       this.$onInit = function(){    
-          this.name = this.data[0].name;;
-          this.phone = this.data[0].phone;
-          this.email = this.data[0].email;
+          this.checkCourses(this.data[1], this.data[0][0].courses);
+          this.name = this.data[0][0].name;;
+          this.phone = this.data[0][0].phone;
+          this.email = this.data[0][0].email;
           this.img = '';
           this.courses = {};
           this.pickedCourses = [];
+      }
+      
+      this.checkCourses = function(courses, checkedCourses){
+          courses.forEach(function(course, i){
+              var index = 'checked' + i;
+              if(i == 4){
+                  this[index] = true;
+              }    
+          }.bind(this))   
       }
   },
   controllerAs: 'editstudent'

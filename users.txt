@@ -1,5 +1,4 @@
 name: charles exyvier | password: charlesX
 name: rose berry | password: rose4444
-name: rojer more | password: mypass
 name: sara michaels | password: sara111
-name: loyid philips | loyidP
+name: loyid philips | password: loyidP

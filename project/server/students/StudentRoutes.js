@@ -3,9 +3,8 @@ var jsonBody = require('body-parser').json();
 
 function setStudentsRoutes(app, db){
     
-    app.get('/school/students/:id', function (req, res) {
+    app.get('/api/school/students/:id', function (req, res) {
         var id = require('mongodb').ObjectID(req.params.id);
-        console.log(id);
         Student.getOne(id, db)
         .then(function (results) {
             res.set({'Content-Type': 'application/json'});

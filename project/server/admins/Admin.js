@@ -44,7 +44,6 @@ class Admin {
     add(db){
         this.validate();
         this.cryptPassword();
-        console.log(this);
         db.collection('admins').insert({
             name: this.name,
             phone: this.phone,

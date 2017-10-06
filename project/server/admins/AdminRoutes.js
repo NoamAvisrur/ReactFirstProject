@@ -3,7 +3,7 @@ var jsonBody = require('body-parser').json();
 
 function setAdminsRoutes(app, db){
     
-    app.get('/admins/:id', function (req, res) {
+    app.get('/api/admins/:id', function (req, res) {
         var id = require('mongodb').ObjectID(req.params.id);
         Admin.getOne(id, db)
         .then(function (results) {

@@ -3,6 +3,11 @@ body{
     font-family: arial;
     color: #333;
 }
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
 header{
     background-color: #67BCDB;
     display: flex;
@@ -45,11 +50,16 @@ header #logo span{
     display: inline-block;
 }
 
-header #user_wrapper img{
+header #user_wrapper .user_img{
     width: 40px;
     margin-left: 0.5rem;
+    border-radius: 5px;
 }
 
+header #user_wrapper .user_role{
+    font-size: 14px;
+    color: #c6cc9a;
+}
 header #user_wrapper #logout_button{
     border: none;
     background-color: tomato;
@@ -340,4 +350,32 @@ ul li:hover{
     border-radius: 10px;
     background-color: #67BCDB;
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+
+#login_container img{
+    width: 40%;
+    margin: auto;
+    display: block;
+}
+
+#login_container form{
+    width: 40%;
+    background-color: #c6cc9a;
+    padding: 2rem;
+    box-sizing: border-box;
+    margin: auto;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#login_container input{
+   width: 50%;
+   height: 30px;
+   padding: 5px;
+}
+
+#login_container #alert{
+    display: block;
+    font-size: 14px;
+    margin-top: 1rem;
 }
