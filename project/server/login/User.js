@@ -34,7 +34,6 @@ class User {
             img: this.img,
             created: new Date()
         });
-        console.log(this);
         return 202;
     }
     

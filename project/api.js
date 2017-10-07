@@ -29,7 +29,6 @@ connect().then(function (db) {
     var testloggedin = function(req, res, next){
         User.checkUser(db, req.cookies.cookieName)
         .then(function (results) {
-            console.log(results);
             if(results.length){
                 return next();
             }else{

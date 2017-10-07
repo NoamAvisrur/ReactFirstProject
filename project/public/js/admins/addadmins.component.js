@@ -60,7 +60,7 @@ app.component('addadminComponent', {
                 if(status == 201){
                     console.log(status);
                     this.clean();
-                    $state.go("admin.general",{},{reload: "admin"})
+                    $state.go("school.general",{},{reload: "admin"})
                 }
             }.bind(this))          
       }

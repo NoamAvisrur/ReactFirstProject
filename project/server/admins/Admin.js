@@ -43,15 +43,17 @@ class Admin {
     
     add(db){
         this.validate();
-        this.cryptPassword();
-        db.collection('admins').insert({
-            name: this.name,
-            phone: this.phone,
-            email: this.email,
-            img: this.img,
-            role_id: mongoose.Types.ObjectId(this.role),
-            password: this.password
-        })
+        bcrypt.hash(this.password, 10, function(err, hash) {
+            this.password = hash;
+            db.collection('admins').insert({
+                name: this.name,
+                phone: this.phone,
+                email: this.email,
+                img: this.img,
+                role_id: mongoose.Types.ObjectId(this.role),
+                password: this.password
+            })            
+        }.bind(this));
         return 201;  
 	}
     
@@ -71,11 +73,11 @@ class Admin {
         if (validator.isEmpty(this.password)) {throw new Error('admins password can not be empty')};        
     }
     
-    cryptPassword(){
-        bcrypt.hash(this.password, 10, function(err, hash) {
-            this.password = hash;
-        }.bind(this));
-    }
+    //cryptPassword(){
+    //    bcrypt.hash(this.password, 10, function(err, hash) {
+    //        this.password = hash;
+    //    }.bind(this));
+    //}
 }
 
 module.exports = Admin;

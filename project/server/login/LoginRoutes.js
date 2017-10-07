@@ -9,14 +9,6 @@ function setLoginRoute(app, db){
         res.sendFile('login.html', { root: path.join(__dirname, '../../public') });
     });
     
-    app.get('/user', function(req, res){
-        User.getUser(db)
-        .then(function (results) {
-            res.set({'Content-Type': 'application/json'});
-			res.send(JSON.stringify(results));
-        });
-    });
-    
     app.post('/login',jsonBody, function(req, res){
         db.collection('admins').find({name: req.body.name}).toArray()
         .then(function (results) {
@@ -29,13 +21,29 @@ function setLoginRoute(app, db){
                     }else{
                         var newUser = new User(req.body.name, results[0].role_id, results[0].img);
                         var status = newUser.save(db);
-                        res.cookie('cookieName', newUser.name, { maxAge: 900000 * 300, httpOnly: true });
+                        res.cookie('cookieName', newUser.name, { maxAge: 30 * 60 * 1000, httpOnly: true });
                         res.sendStatus(status);  
                     }
                 });    
             }   
         });
     });
+    
+    app.post('/logout',jsonBody, function(req, res){
+        db.collection('users').remove({
+            "name": req.cookies.cookieName
+        });
+        res.clearCookie("cookieName");        
+        res.sendStatus(205);
+    });
+    
+    app.get('/user', function(req, res){
+        User.getUser(db)
+        .then(function (results) {
+            res.set({'Content-Type': 'application/json'});
+			res.send(JSON.stringify(results));
+        });
+    });    
     
 
 }
