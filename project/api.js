@@ -1,10 +1,11 @@
 var express = require('express');
-var app = express();
 var jsonBody = require('body-parser').json();
 var path = require('path');
 var connect = require('./connectModule');
 var cookieParser = require('cookie-parser');
 var User = require('./server/login/User');
+
+var app = express();
 
 app.use(cookieParser());
 
@@ -14,7 +15,7 @@ app.get('/', function(req, res){
     }else{
         res.redirect('/login');
     }
-})
+});
 
 app.use(express.static('public'));
 
@@ -35,7 +36,7 @@ connect().then(function (db) {
                 res.send('not logged-in');
             }
         });  
-    }
+    };
     
     app.all('/api/*', testloggedin);
     

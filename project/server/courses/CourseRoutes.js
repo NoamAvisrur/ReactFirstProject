@@ -1,5 +1,7 @@
 var Course = require('./Course');
 var jsonBody = require('body-parser').json();
+var multer = require('multer');
+var upload = multer({ dest: './public/uploads/img'});
 
 function setCoursesRoutes(app, db){
     
@@ -12,16 +14,14 @@ function setCoursesRoutes(app, db){
         });
     });
  
-    app.post('/school/courses',jsonBody, function(req, res){
-		var newCourse = new Course(req.body.title, req.body.description, req.body.img);
-		var status = newCourse.add(db);
-		res.send(status);
+    app.post('/api/school/courses',jsonBody, upload.single('file'), function(req, res){
+		var newCourse = new Course(req.body.title, req.body.description, req.file.filename);
+        res.sendStatus(newCourse.add(db));
     });
     
-    app.delete('/school/courses/:id', function (req, res) {
+    app.delete('/api/school/courses/:id', function (req, res) {
         var id = require('mongodb').ObjectID(req.params.id);
-        var status = Course.deleteOne(id, db);
-        res.send(status);
+        res.sendStatus(Course.deleteOne(id, db));
     });
 
 }

@@ -17,7 +17,6 @@ app.component('addadminComponent', {
                               <label>
                                   <span>role:</span>
                                   <select ng-model="addadmin.role" required>
-                                       <option value="59ca52d0eacd11bc2f1ea63e">Owner</option>
                                        <option value="59ca5316eacd11bc2f1ea63f">Manager</option>
                                        <option value="59ca531eeacd11bc2f1ea640">Sales</option>
                                   </select>

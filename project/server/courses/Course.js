@@ -5,7 +5,7 @@ class Course {
     constructor (title, description, img ){
         this.title = validator.escape(title);
         this.desctiption = validator.escape(description);
-        this.img = `img/courses/${validator.escape(img)}`;
+        this.img = `uploads/img/${validator.escape(img)}`;
     }
     
     static getAll (db) {

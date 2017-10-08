@@ -12,13 +12,13 @@ function setAdminsRoutes(app, db){
         });
     });
 
-    app.post('/admins',jsonBody, function(req, res){
+    app.post('/api/admins',jsonBody, function(req, res){
 		var newAdmin = new Admin(req.body.name, req.body.phone, req.body.email, req.body.img, req.body.role, req.body.password);
 		var status = newAdmin.add(db);
 		res.sendStatus(status);
     }); 
     
-    app.delete('/admins/:id', function (req, res) {
+    app.delete('/api/admins/:id', function (req, res) {
         var id = require('mongodb').ObjectID(req.params.id);
         var status = Admin.deleteOne(id, db);
         res.send(status);

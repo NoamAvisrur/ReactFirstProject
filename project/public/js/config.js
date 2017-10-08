@@ -14,7 +14,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
     }) 
         .state('school.general', {
             url: '/general',
-            template: `<img src="http://www.coadesign.org/core/wp-content/uploads/2013/11/sof-logo.png" alt="logo">`
+            component: 'schoolgeneralComponent',
+            resolve: {
+                data: function(DataService) {
+                      return DataService.getServerData();
+                }
+            }            
         })  
         .state('school.addstudent', {
             url: '/addstudent',
@@ -63,8 +68,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
             resolve: {
                 data: function($stateParams, DataService) {
                     return DataService.getSpecificData($stateParams.courseId, 'school/courses')
-                    .then(function (data) {
-		                 return data;
+                    .then(function (course) {
+                        return DataService.getUserData()
+                        .then(function(user){
+                            var data = [course[0], user[0]]
+                            return data;
+                        })
                     })
                 }
             }
@@ -93,8 +102,13 @@ app.config(function($stateProvider, $urlRouterProvider) {
     })
         .state('admin.general', {
             url: '/general',
-            template: `<img src="http://www.coadesign.org/core/wp-content/uploads/2013/11/sof-logo.png" alt="logo">`
-        })  
+            component: 'admingeneralComponent',
+            resolve: {
+                data: function(DataService) {
+                      return DataService.getServerData();
+                }
+            }            
+        })
         .state('admin.addadmin', {
             url: '/addadmin',
             component: 'addadminComponent'

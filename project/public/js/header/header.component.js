@@ -23,14 +23,13 @@ app.component('headerComponent', {
     this.userRole = '';
     this.userImg = '';
     
-    DataService.getServerData()
+    DataService.getUserData()
     .then(function(res){
-        this.userName = res[3][0].name;
-        this.userImg = res[3][0].img;
-        this.userRole = res[3][0].roles[0].role;
-        if(res[3][0].roles[0].role == 'sales'){
+        this.userName = res[0].name;
+        this.userImg = res[0].img;
+        this.userRole = res[0].roles[0].role;
+        if(res[0].roles[0].role == 'sales'){
             this.showAdmins = false;
-            console.log(this);
         }
     }.bind(this));
     

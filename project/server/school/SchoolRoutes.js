@@ -26,13 +26,7 @@ function setSchoolRoutes(app, db){
                 .then(function (admins) {
                     callback(null, admins);
                 });
-            },
-            function(callback) {
-                User.getUser(db, req.cookies.cookieName)
-                .then(function (user) {
-                    callback(null, user);
-                });
-            }            
+            }          
         ],
         function(err, results) {
 			res.set({'Content-Type': 'application/json'});

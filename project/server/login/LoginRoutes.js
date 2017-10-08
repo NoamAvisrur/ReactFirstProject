@@ -38,13 +38,12 @@ function setLoginRoute(app, db){
     });
     
     app.get('/user', function(req, res){
-        User.getUser(db)
+        User.getUser(db, req.cookies.cookieName)
         .then(function (results) {
             res.set({'Content-Type': 'application/json'});
 			res.send(JSON.stringify(results));
         });
     });    
-    
 
 }
 

@@ -73,11 +73,6 @@ class Admin {
         if (validator.isEmpty(this.password)) {throw new Error('admins password can not be empty')};        
     }
     
-    //cryptPassword(){
-    //    bcrypt.hash(this.password, 10, function(err, hash) {
-    //        this.password = hash;
-    //    }.bind(this));
-    //}
 }
 
 module.exports = Admin;
