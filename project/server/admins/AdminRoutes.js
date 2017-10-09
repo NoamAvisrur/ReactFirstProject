@@ -1,5 +1,7 @@
 var Admin = require('./Admin');
 var jsonBody = require('body-parser').json();
+var multer = require('multer');
+var upload = multer({ dest: './public/uploads/img'});
 
 function setAdminsRoutes(app, db){
     
@@ -12,10 +14,9 @@ function setAdminsRoutes(app, db){
         });
     });
 
-    app.post('/api/admins',jsonBody, function(req, res){
-		var newAdmin = new Admin(req.body.name, req.body.phone, req.body.email, req.body.img, req.body.role, req.body.password);
-		var status = newAdmin.add(db);
-		res.sendStatus(status);
+    app.post('/api/admins',jsonBody, upload.single('file'), function(req, res){
+		var newAdmin = new Admin(req.body.name, req.body.phone, req.body.email, req.body.role, req.body.password, req.file.filename);
+		res.sendStatus(newAdmin.add(db));
     }); 
     
     app.delete('/api/admins/:id', function (req, res) {

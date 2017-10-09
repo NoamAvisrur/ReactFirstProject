@@ -38,10 +38,18 @@ class Course {
         return 201;
 	}  
     
-    // update(){
-        //this.validate();
-        
-    //}
+    edit(db, id){
+        this.validate();
+        db.collection('courses').update(
+            {"_id" : mongoose.Types.ObjectId(id) },
+            {$set : {
+                name: this.title,
+                description: this.desctiption,
+                img: this.img
+            }}
+        )
+        return 200;
+	}  
     
     static deleteOne(id, db){
         db.collection('courses').remove({

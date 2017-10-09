@@ -64,6 +64,28 @@ app.service('DataService', function($http) {
 		});
     };
     
+    this.updateData = function(id, type, data){
+		var fd = new FormData();
+        for(var key in data){
+            fd.append(key, data[key]);
+        }
+        console.log(fd);
+        return $http({
+            method: 'PUT',
+            url: `http://localhost:3000/api/${type}/${id}`,
+            data: fd,
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined}
+        })
+		.then(function (response) {
+            if(response.data == 'not logged-in'){
+                window.location = "http://localhost:3000/login";
+            }else{              
+                return response.status;
+            }    
+		}); 
+    };     
+            
     this.logOut = function(){
 		return $http.post('http://localhost:3000/logout')
 		.then(function (response) {       

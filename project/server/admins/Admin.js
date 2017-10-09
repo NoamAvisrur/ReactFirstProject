@@ -3,13 +3,13 @@ var bcrypt = require('bcrypt');
 var mongoose = require('mongoose');
 
 class Admin {
-    constructor (name, phone, email, img, role, password){
+    constructor (name, phone, email, role, password, img){
         this.name = validator.escape(name);
         this.phone = validator.escape(phone);
         this.email = validator.escape(email);
-        this.img = `img/admins/${validator.escape(img)}`;
         this.role = validator.escape(role);
         this.password = validator.escape(password);
+        this.img = `uploads/img/${validator.escape(img)}`;         
     }
     
     static getAll (db) {

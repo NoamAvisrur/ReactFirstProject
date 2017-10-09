@@ -2,12 +2,12 @@ var validator = require('validator');
 var mongoose = require('mongoose');
 
 class Student {
-    constructor (name, phone, email, img, courses){
+    constructor (name, phone, email, courses, img){
         this.name = validator.escape(name);
         this.phone = validator.escape(phone);
         this.email = validator.escape(email);
-        this.img = `img/students/${validator.escape(img)}`;
-        this.courses = courses;
+        this.courses = JSON.parse(courses);
+        this.img = `uploads/img/${validator.escape(img)}`;        
     }
     
     static getAll (db) {
@@ -37,8 +37,8 @@ class Student {
             name: this.name,
             phone: this.phone,
             email: this.email,
-            img: this.img,
-            courses: this.courses
+            courses: this.courses,
+            img: this.img,            
         })
         return 201;
 	}

@@ -1,7 +1,7 @@
 app.component('editstudentComponent', {
     template: `<div class="add_student_wrapper">
                   <h2>Add new student</h2>
-                  <form ng-submit="addstudent.submit()">
+                  <form ng-submit="editstudent.submit()">
                       <label>
                           <span>name:</span>
                           <input type="text" name="name" ng-model="editstudent.name" maxlength="50" pattern="^[A-Za-z\\s]+$" title="please use english letters only" required>
@@ -16,7 +16,7 @@ app.component('editstudentComponent', {
                       </label>
                       <label>
                           <span>image</span>
-                          <input type="file">
+                          <input type="file" accept="image/*" required>
                       </label>       
                       <h2>Pick student's courses</h2>
                       <label ng-repeat="course in editstudent.data[1] track by $index">
@@ -33,27 +33,61 @@ app.component('editstudentComponent', {
 
         this.$onInit = function(){    
             this.checkCourses(this.data[1], this.data[0][0].courses);
+            this.id = this.data[0][0]._id;
             this.name = this.data[0][0].name;
             this.phone = this.data[0][0].phone;
             this.email = this.data[0][0].email;
-            this.img = '';
-            //this.courses = this.data[0][0].courses;
+            this.courses = {};
             this.pickedCourses = [];
-        }
+            this.file = '';
+        }    
 
         this.checkCourses = function(courses, checkedCourses){
             courses.forEach(function(course, i){
                 var index = 'checked' + i;
                 checkedCourses.forEach(function(checkedCourse, idx){
                     if(course._id == checkedCourse._id){
-                        console.log('ok');
-                        console.log(i);
-                        console.log(this)
                         this[index] = true;
                     }
                 }.bind(this))
             }.bind(this))   
         }
+     
+        this.submit = function(){
+            var keys = Object.keys(this.courses);
+            this.pickedCourses = keys.filter(function(key) {
+                return this.courses[key];
+            }.bind(this));
+            if(this.pickedCourses.length === 0){
+                alert("please pickup courses for new student");
+            }else{ 
+                this.file = document.querySelector('input[type=file]').files[0];
+                var data = {
+                    name: this.name,
+                    phone: this.phone,
+                    email: this.email,
+                    courses: JSON.stringify(this.pickedCourses),
+                    file: this.file                    
+                } 
+                console.log(data);
+                console.log(this.courses)
+                //DataService.addNewData(this.id, 'school/students', data)
+                //.then(function(status){
+                //    if(status == 200){
+                //        this.clean();
+                //        $state.go("school.general",{},{reload: "school"})
+                //    }
+                //}.bind(this))
+            }
+        }
+
+        this.clean = function(){    
+            this.name = '';
+            this.phone = '';
+            this.email = '';
+            this.courses = {};
+            this.pickedCourses = [];
+        }        
     },
     controllerAs: 'editstudent'
 });

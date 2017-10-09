@@ -28,7 +28,6 @@ app.component('viewcourseComponent', {
         this.$onInit = function(){
             if(this.data[1].roles[0].role == 'sales'){
                 this.ableEdit = false;
-                console.log(this);
             }
         }
 
@@ -38,7 +37,6 @@ app.component('viewcourseComponent', {
                 DataService.deleteData(id,'school/courses')
                 .then(function(status){
                     if(status == 204){
-                        console.log(status);
                         $state.go("school.general",{},{reload: "school"});
                     }
                 }.bind(this))

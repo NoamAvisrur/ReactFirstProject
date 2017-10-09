@@ -12,7 +12,7 @@ app.component('addcourseComponent', {
                       </label>
                       <label>
                           <span>course image:</span>
-                          <input type="file" ng-model="addcourse.image">
+                          <input type="file" ng-model="addcourse.image" required>
                       </label>                       
                       <input type="submit">
                   </form>
@@ -31,12 +31,10 @@ app.component('addcourseComponent', {
             if(!pattern.test(this.description)){
                 alert("please use english letters only");
             }else{
-                this.img = document.querySelector('input[type=file]').files[0].name;
                 this.file = document.querySelector('input[type=file]').files[0];
                 var data = {
                     title: this.title,
                     description: this.description,
-                    img: this.img,
                     file: this.file 
                 }
                 DataService.addNewData('school/courses', data)

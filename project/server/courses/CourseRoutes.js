@@ -23,6 +23,12 @@ function setCoursesRoutes(app, db){
         var id = require('mongodb').ObjectID(req.params.id);
         res.sendStatus(Course.deleteOne(id, db));
     });
+    
+    app.put('/api/school/courses/:id',jsonBody, upload.single('file'), function(req, res){
+		var id = require('mongodb').ObjectID(req.params.id);
+        var newCourse = new Course(req.body.title, req.body.description, req.file.filename);
+        res.sendStatus(newCourse.edit(db, id));
+    });    
 
 }
 
