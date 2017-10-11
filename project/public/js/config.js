@@ -96,7 +96,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
         component: 'administratorsComponent',
         resolve: {
             data: function(DataService) {
-                  return DataService.getServerData();
+                return DataService.getServerData()
+                .then(function (admins) {
+                    return DataService.getUserData()
+                    .then(function(user){
+                        var data = [admins, user[0]]
+                        return data;
+                    })
+                })      
             }
         }        
     })

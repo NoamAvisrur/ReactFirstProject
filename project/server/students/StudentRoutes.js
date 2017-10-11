@@ -24,6 +24,12 @@ function setStudentsRoutes(app, db){
         var status = Student.deleteOne(id, db);
         res.send(status);
     });    
+
+    app.put('/api/school/students/:id',jsonBody, upload.single('file'), function(req, res){
+		var id = require('mongodb').ObjectID(req.params.id);
+        var newStudent = new Student(req.body.name, req.body.phone, req.body.email, req.body.courses, req.file.filename);
+        res.sendStatus(newStudent.edit(db, id));
+    });  
 }
 
 module.exports = setStudentsRoutes;

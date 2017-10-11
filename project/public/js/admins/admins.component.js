@@ -5,11 +5,12 @@ app.component('adminsComponent', {
                                <a ui-sref="admin.addadmin">+</a>
                            </div>
                            <ul>
-                               <admin-component admins="admins.admins"></admin-component>
+                               <admin-component admins="admins.admins" user="admins.user"></admin-component>
                            </ul>
                        </div>`,
   bindings: {
-       admins: "="
+       admins: "=",
+       user: "="
   },
   controller: function($element) {
      

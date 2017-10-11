@@ -57,6 +57,25 @@ class Admin {
         return 201;  
 	}
     
+    edit(db, id){
+        this.validate();
+        bcrypt.hash(this.password, 10, function(err, hash) {
+            this.password = hash;
+            db.collection('admins').update(
+                {"_id" : mongoose.Types.ObjectId(id) },
+                {$set : {
+                    name: this.name,
+                    phone: this.phone,
+                    email: this.email,
+                    img: this.img,
+                    role_id: mongoose.Types.ObjectId(this.role),
+                    password: this.password
+                }}
+            )
+        }.bind(this));
+        return 200;
+	} 
+    
     static deleteOne(id, db){
         db.collection('admins').remove({
             "_id": mongoose.Types.ObjectId(id)

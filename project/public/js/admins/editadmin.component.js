@@ -27,7 +27,7 @@ app.component('editadminComponent', {
                        </label>                      
                        <label>
                            <span>presonal image:</span>
-                           <input type="file">
+                           <input type="file" accept="image/*" required>
                        </label>                      
                        <input type="submit">
                    </form>
@@ -37,33 +37,33 @@ app.component('editadminComponent', {
     },
     controller: function($element, DataService, $state) {
 
-        this.$onInit = function(){  
+        this.$onInit = function(){ 
+            this.id = this.data[0]._id;
             this.name = this.data[0].name;
             this.phone = this.data[0].phone;
             this.email = this.data[0].email;
             this.img = '';
-            this.role = '';
+            this.role = this.data[0].roles[0]._id;
             this.password = '';
         }
 
         this.submit = function(){
-            this.img = document.querySelector('input[type=file]').files[0].name;
+            this.file = document.querySelector('input[type=file]').files[0];
             var data = {
                 name: this.name,
                 phone: this.phone,
                 email: this.email,
-                img: this.img,
                 role: this.role,
-                password: this.password
+                password: this.password,
+                file: this.file,                  
             }    
-            DataService.addNewData('admins', JSON.stringify(data))
+            DataService.updateData(this.id,'admins', data)
             .then(function(status){
-                if(status == 201){
-                    console.log(status);
+                if(status == 200){
                     this.clean();
-                    $state.go("admin.general",{},{reload: "admin"})
+                    $state.go("school.general",{},{reload: "admin"})
                 }
-            }.bind(this))          
+            }.bind(this))     
         }
 
         this.clean = function(){  
@@ -72,7 +72,7 @@ app.component('editadminComponent', {
             this.email = '';
             this.role = '';
             this.password = '';          
-        }      
+        } 
 
     },
     controllerAs: 'editadmin'

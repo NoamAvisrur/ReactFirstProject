@@ -32,7 +32,6 @@ class Student {
     add(db){
         this.validate();
         this.prepareCourses();
-        console.log(this);
         db.collection('students').insert({
             name: this.name,
             phone: this.phone,
@@ -42,6 +41,22 @@ class Student {
         })
         return 201;
 	}
+    
+    edit(db, id){
+        this.validate();
+        this.prepareCourses();
+        db.collection('students').update(
+            {"_id" : mongoose.Types.ObjectId(id) },
+            {$set : {
+                name: this.name,
+                phone: this.phone,
+                email: this.email,
+                courses: this.courses,
+                img: this.img, 
+            }}
+        )
+        return 200;
+	}  
     
     static deleteOne(id, db){
         db.collection('students').remove({

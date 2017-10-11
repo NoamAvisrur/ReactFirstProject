@@ -69,7 +69,6 @@ app.service('DataService', function($http) {
         for(var key in data){
             fd.append(key, data[key]);
         }
-        console.log(fd);
         return $http({
             method: 'PUT',
             url: `http://localhost:3000/api/${type}/${id}`,

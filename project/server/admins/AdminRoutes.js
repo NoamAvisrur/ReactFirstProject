@@ -23,6 +23,12 @@ function setAdminsRoutes(app, db){
         var id = require('mongodb').ObjectID(req.params.id);
         var status = Admin.deleteOne(id, db);
         res.send(status);
+    });   
+    
+    app.put('/api/admins/:id',jsonBody, upload.single('file'), function(req, res){
+		var id = require('mongodb').ObjectID(req.params.id);
+        var newAdmin = new Admin(req.body.name, req.body.phone, req.body.email, req.body.role, req.body.password, req.file.filename);
+        res.sendStatus(newAdmin.edit(db, id));
     });      
 
 }

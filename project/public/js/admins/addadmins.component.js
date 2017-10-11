@@ -27,7 +27,7 @@ app.component('addadminComponent', {
                       </label>                      
                       <label>
                           <span>presonal image:</span>
-                          <input type="file">
+                          <input type="file" accept="image/*" required>
                       </label>                      
                       <input type="submit">
                   </form>
@@ -42,7 +42,7 @@ app.component('addadminComponent', {
         this.email = '';
         this.role = '';
         this.password = '';
-        this.img = '';
+        this.file = '';
 
         this.submit = function(){
               this.file = document.querySelector('input[type=file]').files[0];

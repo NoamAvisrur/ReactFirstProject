@@ -20,7 +20,7 @@ app.component('editstudentComponent', {
                       </label>       
                       <h2>Pick student's courses</h2>
                       <label ng-repeat="course in editstudent.data[1] track by $index">
-                          <input type="checkbox" value={{course._id}} ng-checked="editstudent.checked{{$index}}" ng-model="editstudent.courses[course._id]">
+                          <input type="checkbox" value={{course._id}} ng-model="editstudent.courses[course._id]">
                           <span class="course_title">{{course.name}}</span>
                       </label>
                       <input type="submit">
@@ -32,7 +32,6 @@ app.component('editstudentComponent', {
     controller: function($element, DataService, $state) {
 
         this.$onInit = function(){    
-            this.checkCourses(this.data[1], this.data[0][0].courses);
             this.id = this.data[0][0]._id;
             this.name = this.data[0][0].name;
             this.phone = this.data[0][0].phone;
@@ -40,17 +39,13 @@ app.component('editstudentComponent', {
             this.courses = {};
             this.pickedCourses = [];
             this.file = '';
-        }    
-
-        this.checkCourses = function(courses, checkedCourses){
+            this.setCurrentCourses(this.data[0][0].courses);
+        }
+        
+        this.setCurrentCourses = function(courses){
             courses.forEach(function(course, i){
-                var index = 'checked' + i;
-                checkedCourses.forEach(function(checkedCourse, idx){
-                    if(course._id == checkedCourse._id){
-                        this[index] = true;
-                    }
-                }.bind(this))
-            }.bind(this))   
+                this.courses[course._id] = true
+            }.bind(this))
         }
      
         this.submit = function(){
@@ -69,15 +64,13 @@ app.component('editstudentComponent', {
                     courses: JSON.stringify(this.pickedCourses),
                     file: this.file                    
                 } 
-                console.log(data);
-                console.log(this.courses)
-                //DataService.addNewData(this.id, 'school/students', data)
-                //.then(function(status){
-                //    if(status == 200){
-                //        this.clean();
-                //        $state.go("school.general",{},{reload: "school"})
-                //    }
-                //}.bind(this))
+                DataService.updateData(this.id, 'school/students', data)
+                .then(function(status){
+                    if(status == 200){
+                        this.clean();
+                        $state.go("school.general",{},{reload: "school"})
+                    }
+                }.bind(this))
             }
         }
 
