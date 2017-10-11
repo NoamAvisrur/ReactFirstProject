@@ -1,16 +1,16 @@
 app.component('headerComponent', {
   template: `<header>
                  <nav>
+                     <div id="logo">
+                         <span></span>
+                         <img src="http://www.coadesign.org/core/wp-content/uploads/2013/11/sof-logo.png" alt="logo">
+                         <span></span>
+                     </div>
                      <a ui-sref="school.general">school</a>
                      <a ui-sref="admin.general" ng-show="header.showAdmins">administrators</a>
                  </nav>
-                 <div id="logo">
-                       <span></span>
-                       <img src="http://www.coadesign.org/core/wp-content/uploads/2013/11/sof-logo.png" alt="logo">
-                       <span></span>
-                 </div>
                  <div id="user_wrapper">
-                     <span>Hello {{header.userName}},</span>
+                     <span>Hello {{header.userName}}-</span>
                      <span class="user_role">{{ header.userRole}}</span>
                      <img class="user_img" ng-src="{{header.userImg}}" alt="user img">
                      <button id="logout_button" ng-click="header.logout()">Log-Out</button>

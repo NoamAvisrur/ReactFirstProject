@@ -1,5 +1,5 @@
 app.component('adminComponent', {
-    template: `<a ng-href=/#!/admin/{{admin._id}} ng-repeat="admin in admin.admins">
+    template: `<a ng-href=/#!/admin/{{admin._id}} ng-repeat="admin in Admin.admins" ng-if="admin.roles[0].role !== Admin.loggedUser">
                     <li>
                         <img class="admin_img" ng-src={{admin.img}} alt="course img"/>
                         <div>
@@ -15,22 +15,14 @@ app.component('adminComponent', {
     },
     controller: function($element) {
         
-      this.showOwner = true;  
+        this.loggedUser = true;  
 
-      this.$onInit = function(){
-         // if(this.user.roles[0].role == 'sales' || this.user.roles[0].role == 'manager' ){
-         //         this.showOwner = "admin.roles[0].role !== 'owner'";
-         // }else{
-         //     console.log(this.showOwner);
-         // }
-      }    
-      
-      this.checkPremmition = function(admin){
-          console.log(admin);
-          console.log('ok')
-          return true;
-      }
+        this.$onInit = function(){
+            if(this.user.roles[0].role == 'manager'){
+                this.loggedUser = 'owner';
+            }
+        }    
 
     },
-    controllerAs: 'admin'
+    controllerAs: 'Admin'
 });

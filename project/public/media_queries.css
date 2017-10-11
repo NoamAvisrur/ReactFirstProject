@@ -1,0 +1,86 @@
+@media screen and (max-width: 450px) {
+    .content{
+        display: block;
+        padding: 2rem 2rem;
+    }
+    #courses, #students, #admins, .main_view{
+        margin-bottom: 2rem;
+    }
+    header{
+        display: block;
+    }
+    header nav{
+        margin-bottom: 1rem;
+    }
+    header #user_wrapper{
+        justify-content: flex-end;
+    }
+}  
+
+@media screen and (min-width: 450px) and (max-width: 600px) {
+    .content{
+        display: block;
+        padding: 2rem 2rem;
+    }
+    #courses, #students, #admins, .main_view{
+        margin-bottom: 2rem;
+    }
+    header{
+        display: block;
+    }
+    header nav{
+        margin-bottom: 1rem;
+    }
+    header #user_wrapper{
+        justify-content: flex-end;
+    }
+}
+
+@media screen and (min-width: 600px) and (max-width: 800px) {
+    .content{
+        display: block;
+        padding: 2rem 6rem;
+    }
+    #courses, #students, #admins, .main_view{
+        margin-bottom: 2rem;
+    }
+    header{
+        display: block;
+    }
+    header nav{
+        margin-bottom: 1rem;
+    }
+    header #user_wrapper{
+        justify-content: flex-end;
+    }
+}
+@media screen and (min-width: 800px) and (max-width: 1000px) {
+    .content{
+        display: block;
+        padding: 2rem 10rem;
+    }
+    #courses, #students, #admins, .main_view{
+        margin-bottom: 2rem;
+    }
+    #login_container form, #login_container img{
+        width: 60%;
+    }
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1250px) {
+    schoolview-component, adminsview-component{
+        width: 50%;
+    }
+    courses-component, students-component{
+        width: 23%;
+    }
+    .general_wrapper h2{
+        width: 70%;
+    }
+    admins-component {
+    width: 45%;
+}
+}
+
+@media screen and (min-width: 1250px) { 
+}    

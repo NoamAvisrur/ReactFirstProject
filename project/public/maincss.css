@@ -37,14 +37,13 @@ header #logo{
 }
 
 header #logo img{
-    width: 80px;
-    width: 80px;
+    width: 70px;
     border: 1.5px solid #cfcece;
     border-radius: 3px;
 }
 
 header #logo span{
-    width: 150px;
+    width: 50px;
     height: 1.5px;
     background-color: #cfcece;
     display: inline-block;

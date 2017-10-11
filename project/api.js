@@ -1,7 +1,7 @@
 var express = require('express');
 var jsonBody = require('body-parser').json();
 var path = require('path');
-var connect = require('./connectModule');
+var connect = require('./server/connectModule');
 var cookieParser = require('cookie-parser');
 var User = require('./server/login/User');
 
