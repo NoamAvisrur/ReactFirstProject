@@ -8,10 +8,11 @@ app.component('headerComponent', {
                      </div>
                      <a ui-sref="school.general">school</a>
                      <a ui-sref="admin.general" ng-show="header.showAdmins">administrators</a>
+                     <button id="mobile_logout_button" ng-click="header.logout()">Log-Out</button>
                  </nav>
                  <div id="user_wrapper">
-                     <span>Hello {{header.userName}}-</span>
-                     <span class="user_role">{{ header.userRole}}</span>
+                     <span>Hello {{header.userName}} (</span>
+                     <span class="user_role">{{ header.userRole}})</span>
                      <img class="user_img" ng-src="{{header.userImg}}" alt="user img">
                      <button id="logout_button" ng-click="header.logout()">Log-Out</button>
                  </div>

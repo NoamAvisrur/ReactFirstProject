@@ -49,15 +49,17 @@ header #logo span{
     display: inline-block;
 }
 
+header #user_wrapper{
+    padding: 0.5rem;
+    background-color: #c6cc9a;
+    border-radius: 5px;
+}
 header #user_wrapper .user_img{
     width: 35px;
     margin-left: 0.5rem;
     border-radius: 5px;
 }
 
-header #user_wrapper .user_role{
-    color: #c6cc9a;
-}
 header #user_wrapper #logout_button{
     border: none;
     background-color: tomato;
@@ -154,6 +156,10 @@ schoolview-component, adminsview-component{
 .students_header{
     display: flex;
     justify-content: space-between;
+}
+
+#mobile_logout_button{
+    display: none;
 }
 
 .students_header a, .delete{

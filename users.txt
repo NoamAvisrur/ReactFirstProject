@@ -1,4 +1,4 @@
-name: charles exyvier | password: charlesX
-name: rose berry | password: rose4444
-name: sara michaels | password: sara111
-name: loyid philips | password: loyidP
+name: charles exyvier | role: user | password: charlesX
+name: rose berry | rolse: manager |  password: rose4444
+name: sara michaels | role: sales password: sara111
+name: loyid conors | role: manager | password: loyidC
