@@ -58,7 +58,7 @@
     }
     h2{
         width: auto;
-        font-size: 1rem;
+        font-size: 12px;
     }
     .students_header a, .delete{
         width: 40px;
@@ -69,10 +69,16 @@
         font-size: 12px;
         padding: 0;
     } 
-    general_wrapper img{
+    .general_wrapper img{
         height: auto;
         width: 100%;
-    }     
+    }  
+    input, select, textarea{
+        width: 100%;
+    }
+    textarea{
+        box-sizing: border-box;
+    }
 }  
 
 @media screen and (min-width: 450px) and (max-width: 600px) {
@@ -102,7 +108,7 @@
         width: auto;
         font-size: 1rem;
     }  
-    general_wrapper .view_content img{
+    .general_wrapper .view_content img{
         height: auto;
         width: 100%;
     }    
@@ -115,6 +121,12 @@
         font-size: 12px;
         padding: 0;
     }
+    input, select, textarea{
+        width: 70%;
+    }
+    textarea{
+        box-sizing: border-box;
+    }    
 }
 
 @media screen and (min-width: 600px) and (max-width: 800px) {
@@ -153,6 +165,12 @@
         font-size: 12px;
         padding: 0;
     }    
+    input, select, textarea{
+        width: 50%;
+    }
+    textarea{
+        box-sizing: border-box;
+    }
 }
 @media screen and (min-width: 800px) and (max-width: 1000px) {
     .content{
@@ -181,6 +199,12 @@
         font-size: 12px;
         padding: 0;
     }    
+    input, select, textarea{
+        width: 50%;
+    }
+    textarea{
+        box-sizing: border-box;
+    }    
 }
 
 @media screen and (min-width: 1000px) and (max-width: 1250px) {
@@ -195,7 +219,10 @@
     }
     admins-component {
     width: 45%;
-}
+    }
+    input, select, textarea{
+        width: 50%;
+    }    
 }
 
 @media screen and (min-width: 1250px) { 
